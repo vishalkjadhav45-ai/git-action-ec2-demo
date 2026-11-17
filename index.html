@@ -1,11 +1,121 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>GitHub Actions EC2 Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Actions | EC2 Deployment</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 680px;
+            width: 100%;
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #334155;
+        }
+
+        .status {
+            display: inline-block;
+            background: #14532d;
+            color: #86efac;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            color: #38bdf8;
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 28px;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #f8fafc;
+            margin-bottom: 18px;
+        }
+
+        .task {
+            background: #0f172a;
+            padding: 13px 16px;
+            margin-bottom: 10px;
+            border-radius: 9px;
+            border-left: 3px solid #22c55e;
+            color: #cbd5e1;
+        }
+
+        .footer {
+            border-top: 1px solid #334155;
+            margin-top: 25px;
+            padding-top: 20px;
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            color: #38bdf8;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>GitHub Actions Deployment Successful!</h1>
-    <h2>Application hosted on AWS EC2</h2>
-    <p>CI/CD pipeline is working successfully.</p>
+    <div class="container">
+
+        <div class="status">● DEPLOYMENT SUCCESSFUL</div>
+
+        <h1>🚀 GitHub Actions CI/CD</h1>
+
+        <p class="subtitle">
+            Our application has been successfully deployed
+            on AWS EC2 using GitHub Actions automation.
+        </p>
+
+        <h2>✅ What We Accomplished</h2>
+
+        <div class="task">📁 Created a GitHub repository</div>
+        <div class="task">💻 Developed the HTML application</div>
+        <div class="task">⚙️ Configured GitHub Actions YAML workflow</div>
+        <div class="task">🔨 Automated the build process</div>
+        <div class="task">🔐 Configured secure SSH authentication</div>
+        <div class="task">☁️ Connected GitHub Actions with AWS EC2</div>
+        <div class="task">🌐 Deployed the application using Nginx</div>
+        <div class="task">🔄 Enabled automatic deployment on Git push</div>
+
+        <div class="footer">
+            <p>☁️ Platform: <span class="highlight">Amazon Web Services (AWS)</span></p>
+            <p>⚙️ Automation: <span class="highlight">GitHub Actions</span></p>
+            <p>🌐 Web Server: <span class="highlight">Nginx</span></p>
+            <p>🎯 Status: <span class="highlight">CI/CD Pipeline Working</span></p>
+            <p style="margin-top: 12px;">Built and deployed as a DevOps hands-on project.</p>
+        </div>
+
+    </div>
 </body>
 </html>
