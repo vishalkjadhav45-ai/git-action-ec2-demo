@@ -1,0 +1,13 @@
+{
+  "name": "github-actions-ec2-demo",
+  "version": "1.0.0",
+  "description": "Node.js deployment using GitHub Actions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --check server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

@@ -1,5 +1,5 @@
 
-name: GitHub Actions EC2 Deployment
+name: Node.js EC2 Deployment
 
 on:
   push:
@@ -13,14 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Build application
-        run: |
-          echo "Building application"
-          echo "Repository: ${{ github.repository }}"
-          echo "Build successful"
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Test Application
+        run: npm test
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
@@ -34,12 +39,23 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H "$EC2_HOST" >> ~/.ssh/known_hosts
 
-      - name: Deploy to EC2
+      - name: Create EC2 Application Directory
         env:
           EC2_HOST: ${{ secrets.EC2_HOST }}
           EC2_USER: ${{ secrets.EC2_USER }}
         run: |
-          scp index.html $EC2_USER@$EC2_HOST:/tmp/index.html
+          ssh $EC2_USER@$EC2_HOST "mkdir -p /home/ec2-user/node-app"
 
-          ssh $EC2_USER@$EC2_HOST \
-            "sudo install -m 644 /tmp/index.html /usr/share/nginx/html/index.html"
+      - name: Copy Application Files
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+        run: |
+          scp -r server.js package.json public $EC2_USER@$EC2_HOST:/home/ec2-user/node-app/
+
+      - name: Install and Start Application
+        env:
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          EC2_USER: ${{ secrets.EC2_USER }}
+        run: |
+          ssh $EC2_USER@$EC2_HOST "cd /home/ec2-user/node-app && npm install --omit=dev && (pm2 restart node-app || pm2 start server.js --name node-app) && pm2 save"
